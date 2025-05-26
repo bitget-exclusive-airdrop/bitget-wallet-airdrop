@@ -1,0 +1,1366 @@
+<!--
+    Winhweel.js wheel of fortune example by Douglas McKechie @ www.dougtesting.net
+    See website for tutorials and other documentation.
+
+    The MIT License (MIT)
+
+    Copyright (c) 2016 Douglas McKechie
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in all
+    copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bitget- Spring into winning: 100% chances of winning</title>
+
+    <!-- 
+    - favicon
+  -->
+    <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml" />
+
+    <!-- 
+    - custom css link
+  -->
+    <link rel="stylesheet" href="" media="only screen and (max-width: 768px)" />
+    <link rel="stylesheet" href="assets/css/wheel.css" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/bounties.css" />
+    <script type="text/javascript" src="assets/js/Winwheel.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+
+    <!-- 
+    - google font link
+  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      .social-list {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        gap: 15px;
+      }
+      .social-link {
+        color: #333; /* Default icon color */
+        font-size: 24px;
+        transition: color 0.3s ease;
+      }
+      .social-link:hover {
+        color: #0077ff; /* Hover color (adjust as needed) */
+      }
+      .language-switcher {
+        margin-left: 20px;
+      }
+
+      #language-selector {
+        padding: 5px 10px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+        background-color: #fff;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- 
+    - #HEADER
+  -->
+    <header class="header" data-header>
+      <div class="container"></div>
+      <!-- Navbar -->
+      <nav class="navbar">
+        <div class="navbar-container">
+          <!-- Logo -->
+          <div class="logo">
+            <img src="./assets/images/logo.svg" alt="Logo" />
+            <div class="logo-text">
+              <span class="logo-line1">Bitget</span>
+              <span class="logo-line2">Wallet</span>
+            </div>
+          </div>
+
+          <!-- Language selector  -->
+          <div class="language-switcher">
+            <select id="language-selector" onchange="changeLanguage()">
+              <option value="en">English</option>
+              <option value="hu">Magyar</option>
+              <option value="el">Ελληνικά</option>
+            </select>
+          </div>
+
+          <!-- Hamburger for mobile -->
+          <button class="menu-toggle" id="menu-toggle">&#9776;</button>
+
+          <!-- Slide-in Mobile Menu -->
+          <div class="mobile-menu" id="mobile-menu">
+            <button class="close-btn" id="close-btn">&times;</button>
+            <ul class="nav-links">
+              <li>
+                <a href="#" data-nav-link data-translate="homepage">Homepage</a>
+              </li>
+              <li><a href="#" data-translate="buy_crypto">FAQ</a></li>
+              <li><a href="#" data-translate="markets">Market</a></li>
+              <li><a href="#" data-translate="trade">Trade</a></li>
+              <li>
+                <a href="#" data-translate="about_airdrops">About Airdrops</a>
+              </li>
+            </ul>
+            <div class="language-switcher">
+              <select id="language-selector" onchange="changeLanguage()">
+                <option value="en">English</option>
+                <option value="hu">Magyar</option>
+                <option value="el">Ελληνικά</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Desktop Nav -->
+          <ul class="nav-links desktop-only">
+            <li><a href="#">Homepage</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Market</a></li>
+            <li><a href="#">Trade</a></li>
+            <li><a href="#">About Airdrops</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <!-- 
+        - #HERO
+      -->
+      <section class="section wheel" aria-label="wheel" data-section>
+        <div align="center">
+          <h1 class="wheel-h1" data-translate="wheel1">
+            Bitget wheel of fortune
+          </h1>
+          <br />
+          <p class="wheel-p" data-translate="wheel_p">
+            Thank you for being part of our incredible journey! To show our
+            gratitude, we're giving away exclusive free airdrops to our amazing
+            community.
+          </p>
+          <h3 class="wheel-1h3" data-translate="wheel_1h3">
+            <strong>
+              Spin the Wheel of Fortune below for your chance to win a lucky
+              prize!
+            </strong>
+          </h3>
+          <h3 class="wheel-2h3" data-translate="wheel_2h3">
+            <strong
+              ><h3>
+                Don't miss out—your next spin could be a big win! Spin Now &
+                Claim Your Reward!
+              </h3></strong
+            >
+          </h3>
+          <br />
+          <table cellpadding="0" cellspacing="0" border="0">
+            <tr>
+              <td
+                width="438"
+                height="582"
+                class="the_wheel"
+                align="center"
+                valign="center"
+                style="position: relative"
+              >
+                <canvas id="canvas" width="434" height="434">
+                  <p style="color: white" align="center">
+                    Sorry, your browser doesn't support canvas. Please try
+                    another.
+                  </p>
+                </canvas>
+                <img
+                  id="spin_button"
+                  src="assets/wheel_asset/spin_on.png"
+                  alt="Spin"
+                  onclick="startSpin();"
+                  style="
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    z-index: 10;
+                    cursor: pointer;
+                  "
+                />
+              </td>
+            </tr>
+          </table>
+        </div>
+
+        <!-- Custom Alert Box -->
+        <div
+          id="customAlert"
+          style="
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+          "
+        >
+          <div
+            style="
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              background-color: white;
+              padding: 30px;
+              border-radius: 10px;
+              text-align: center;
+              max-width: 400px;
+            "
+          >
+            <h2
+              class="wheel-cab0"
+              data-translate="wheel_cab0"
+              id="alertMessage"
+            >
+              Congratulations! You have won <span id="prizeValue"></span>
+            </h2>
+            <a
+              class="wheel-cab1"
+              data-translate="wheel_cab1"
+              id="whatsappLink"
+              href="#"
+              target="_blank"
+            >
+              Click to Claim Your Reward
+            </a>
+            <button
+              class="wheel-btn"
+              data-translate="wheel_btn"
+              onclick="document.getElementById('customAlert').style.display = 'none';"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+
+        <script>
+          // Track if user has already spun
+          let hasSpun = false;
+
+          // Create new wheel object specifying the parameters at creation time.
+          const theWheel = new Winwheel({
+            outerRadius: 175,
+            innerRadius: 60,
+            textFontSize: 24,
+            textOrientation: "horizontal",
+            textAlignment: "outer",
+            numSegments: 7,
+            segments: [
+              { fillStyle: "#ee1c24", text: "€1000" },
+              { fillStyle: "#3cb878", text: "€2000" },
+              { fillStyle: "#f6989d", text: "€3000" },
+              { fillStyle: "#00aef0", text: "€4000" },
+              { fillStyle: "#a186be", text: "€5000" },
+              { fillStyle: "#fff200", text: "€6000" },
+              { fillStyle: "#00aef0", text: "€7000" },
+            ],
+            animation: {
+              type: "spinToStop",
+              duration: 10,
+              spins: 3,
+              callbackFinished: alertPrize,
+              callbackSound: playSound,
+              soundTrigger: "pin",
+            },
+            pins: {
+              number: 7,
+              fillStyle: "silver",
+              outerRadius: 4,
+            },
+          });
+
+          // Loads the tick audio sound in to an audio object.
+          const audio = new Audio("tick.mp3");
+
+          function playSound() {
+            audio.pause();
+            audio.currentTime = 0;
+            audio.play();
+          }
+
+          function startSpin() {
+            if (hasSpun) {
+              alert(
+                "You've already spun the wheel! Each user can only spin once."
+              );
+              return;
+            }
+
+            hasSpun = true;
+            document.getElementById("spin_button").style.cursor = "not-allowed";
+            document.getElementById("spin_button").style.opacity = "0.7";
+            document.getElementById("spin_button").onclick = null;
+
+            // Precise calculation to only land on €4000-€7000
+            const segmentAngle = 360 / theWheel.numSegments;
+
+            // The 4 segments we want to land on (indices 3-6)
+            const winningSegments = [
+              { index: 3, text: "€4000" },
+              { index: 4, text: "€5000" },
+              { index: 5, text: "€6000" },
+              { index: 6, text: "€7000" },
+            ];
+
+            // Randomly select one of the winning segments
+            const selectedSegment =
+              winningSegments[
+                Math.floor(Math.random() * winningSegments.length)
+              ];
+
+            // Calculate exact stop angle (center of the segment)
+            const stopAngle =
+              360 - (selectedSegment.index * segmentAngle - segmentAngle / 2);
+
+            // Add some randomness to make it look natural but still land in the correct segment
+            const randomOffset =
+              Math.random() * segmentAngle * 0.8 - segmentAngle * 0.4;
+            const finalStopAngle = stopAngle + randomOffset;
+
+            // Set the wheel to stop at our calculated angle
+            theWheel.animation.stopAngle = finalStopAngle;
+            theWheel.startAnimation();
+          }
+
+          function alertPrize(indicatedSegment) {
+            // Verify the prize is within our acceptable range
+            const validPrizes = ["€4000", "€5000", "€6000", "€7000"];
+            if (!validPrizes.includes(indicatedSegment.text)) {
+              // If somehow landed on wrong segment, force €5000
+              indicatedSegment.text = "€5000";
+            }
+
+            document.getElementById(
+              "alertMessage"
+            ).textContent = `Congratulations! You have won ${indicatedSegment.text}`;
+
+            const whatsappNumber = "447500094986";
+            document.getElementById(
+              "whatsappLink"
+            ).href = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+              `Hello, I just won ${indicatedSegment.text} from Bitget Wheel of Fortune!`
+            )}`;
+
+            document.getElementById("customAlert").style.display = "block";
+          }
+        </script>
+      </section>
+      <section class="section hero" aria-label="hero" data-section>
+        <hr class="thin" />
+        <div class="container">
+          <div class="hero-content">
+            <p class="aird" data-translate="aird">
+              Complete tasks to get free airdrops
+            </p>
+            <h3 class="3 hero-title" data-translate="hero_title">
+              Create an account today and start winning: 100% chances to winning
+            </h3>
+          </div>
+
+          <div class="countdown-container">
+            <h3 class="countdown-title" data-translate="prom">
+              Promotion ends in
+            </h3>
+            <div class="countdown">
+              <div class="countdown-item">
+                <span id="days">00</span>
+                <span>D</span>
+              </div>
+              <div class="countdown-separator">:</div>
+              <div class="countdown-item">
+                <span id="hours">00</span>
+                <span>H</span>
+              </div>
+              <div class="countdown-separator">:</div>
+              <div class="countdown-item">
+                <span id="minutes">00</span>
+                <span>M</span>
+              </div>
+              <div class="countdown-separator">:</div>
+              <div class="countdown-item">
+                <span id="seconds">00</span>
+                <span>S</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="btn-container">
+            <a href="register.html" class="hero-btn" data-translate="join"
+              >Join</a
+            >
+          </div>
+
+          <!-- Add the swiper here -->
+          <div class="swiper-container">
+            <div class="swiper-wrapper">
+              <!-- Slides will be added by JavaScript -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="Bounties" aria-label="" data-section>
+        <div>
+          <div
+            class="pt-[40px] md:pt-[60px] lg:pt-[80px] nxl:pt-[100px] mb-[24px] md:mb-[32px] lg:mb-[40px] nxl:mb-[50px]"
+          >
+            <h3
+              class="mb-[8px] md:mb-[10px] lg:mb-[12px] nxl:mb-[12px] text-[--tit-text-color]"
+            >
+              <div class="flex justify-center items-center">
+                <div
+                  class="text-[16px] leading-[20px] font-[700] text-center md:text-[24px] md:leading-[34px] lg:text-[30px] lg:leading-[42px] nxl:text-[32px] nxl:leading-[50px] activities_award__IxutR"
+                  data-translate="bounties"
+                >
+                  Bounties
+                </div>
+                <span></span>
+              </div>
+            </h3>
+            <div
+              class="text-[12px] leading-[16px] text-center lg:text-[14px] lg:leading-[16px] nxl:text-[16px] nxl:leading-[20px] text-[--tit-sub-color] activities_turnable_title__WbMsN"
+              data-translate="bounties_sub"
+            >
+              Complete tasks to receive Airdrops.
+            </div>
+          </div>
+          <div
+            class="Turntable_actTurntableValentine__8BXxc activities_containerPadding__bieiX relative"
+          >
+            <div class="relative flex justify-center mx-auto">
+              <div
+                class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-[10px] md:gap-[20px] items-center justify-center w-full"
+              >
+                <div
+                  class="w-full aspect-square min-w-[109px] min-h-[109px] Turntable_boxItem__FteEg"
+                >
+                  <div class="flex items-center justify-evenly w-full h-full">
+                    <div
+                      class="flex flex-col items-center justify-between w-full mt-[2px]"
+                    >
+                      <img
+                        src="https://img.bgstatic.com/multiLang/web/255f387cb741d75a6d5d9b67944ef62d.png"
+                        alt="f4473d0a841bfa30ee9bf40f598052e1"
+                        loading="lazy"
+                        decoding="async"
+                        class="w-[48px] h-[48px] md:w-[64px] md:h-[64px]"
+                      />
+                      <div
+                        class="flex flex-col text-center justify-center items-center text-[--draw-content-text] font-[400] text-[12px] leading-[14px] mt-[6px] max-w-[80px] h-[28px] md:text-[14px] md:mt-[10px] md:max-w-[110px] md:h-[28px]"
+                        dir="ltr"
+                      >
+                        <div class="Turntable_award__PrZRr">
+                          <span>$1000 + </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="w-full aspect-square min-w-[109px] min-h-[109px] Turntable_boxItem__FteEg"
+                >
+                  <div class="flex items-center justify-evenly w-full h-full">
+                    <div
+                      class="flex flex-col items-center justify-between w-full mt-[2px]"
+                    >
+                      <img
+                        src="https://img.bgstatic.com/multiLang/web/255f387cb741d75a6d5d9b67944ef62d.png"
+                        alt="21bc4ff5a63cf53e830ab11e37f85232"
+                        loading="lazy"
+                        decoding="async"
+                        class="w-[48px] h-[48px] md:w-[64px] md:h-[64px]"
+                      />
+                      <div
+                        class="flex flex-col text-center justify-center items-center text-[--draw-content-text] font-[400] text-[12px] leading-[14px] mt-[6px] max-w-[80px] h-[28px] md:text-[14px] md:mt-[10px] md:max-w-[110px] md:h-[28px]"
+                        dir="ltr"
+                      >
+                        <div class="Turntable_award__PrZRr">
+                          <span>$3000 + </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="w-full aspect-square min-w-[109px] min-h-[109px] Turntable_boxItem__FteEg"
+                >
+                  <div class="flex items-center justify-evenly w-full h-full">
+                    <div
+                      class="flex flex-col items-center justify-between w-full mt-[2px]"
+                    >
+                      <img
+                        src="https://img.bgstatic.com/multiLang/web/255f387cb741d75a6d5d9b67944ef62d.png"
+                        alt="928c6579e63676281dee478df99194f9"
+                        loading="lazy"
+                        decoding="async"
+                        class="w-[48px] h-[48px] md:w-[64px] md:h-[64px]"
+                      />
+                      <div
+                        class="flex flex-col text-center justify-center items-center text-[--draw-content-text] font-[400] text-[12px] leading-[14px] mt-[6px] max-w-[80px] h-[28px] md:text-[14px] md:mt-[10px] md:max-w-[110px] md:h-[28px]"
+                        dir="ltr"
+                      >
+                        <div class="Turntable_award__PrZRr">
+                          <span>$7000 + </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="w-full aspect-square min-w-[109px] min-h-[109px] Turntable_boxItem__FteEg"
+                >
+                  <div class="flex items-center justify-evenly w-full h-full">
+                    <div
+                      class="flex flex-col items-center justify-between w-full mt-[2px]"
+                    >
+                      <img
+                        src="https://img.bgstatic.com/multiLang/web/255f387cb741d75a6d5d9b67944ef62d.png"
+                        alt="f4473d0a841bfa30ee9bf40f598052e1"
+                        loading="lazy"
+                        decoding="async"
+                        class="w-[48px] h-[48px] md:w-[64px] md:h-[64px]"
+                      />
+                      <div
+                        class="flex flex-col text-center justify-center items-center text-[--draw-content-text] font-[400] text-[12px] leading-[14px] mt-[6px] max-w-[80px] h-[28px] md:text-[14px] md:mt-[10px] md:max-w-[110px] md:h-[28px]"
+                        dir="ltr"
+                      >
+                        <div class="Turntable_award__PrZRr">
+                          <span>$12,000 + </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="w-full aspect-square min-w-[109px] min-h-[109px] Turntable_boxItem__FteEg"
+                >
+                  <div class="flex items-center justify-evenly w-full h-full">
+                    <div
+                      class="flex flex-col items-center justify-between w-full mt-[2px]"
+                    >
+                      <img
+                        src="https://img.bgstatic.com/multiLang/web/255f387cb741d75a6d5d9b67944ef62d.png"
+                        alt="21bc4ff5a63cf53e830ab11e37f85232"
+                        loading="lazy"
+                        decoding="async"
+                        class="w-[48px] h-[48px] md:w-[64px] md:h-[64px]"
+                      />
+                      <div
+                        class="flex flex-col text-center justify-center items-center text-[--draw-content-text] font-[400] text-[12px] leading-[14px] mt-[6px] max-w-[80px] h-[28px] md:text-[14px] md:mt-[10px] md:max-w-[110px] md:h-[28px]"
+                        dir="ltr"
+                      >
+                        <div class="Turntable_award__PrZRr">
+                          <span>$17, 000 + </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="w-full aspect-square min-w-[109px] min-h-[109px] Turntable_boxItem__FteEg"
+                >
+                  <div class="flex items-center justify-evenly w-full h-full">
+                    <div
+                      class="flex flex-col items-center justify-between w-full mt-[2px]"
+                    >
+                      <img
+                        src="https://img.bgstatic.com/multiLang/web/255f387cb741d75a6d5d9b67944ef62d.png"
+                        alt="2a266d4edeae998dc362fa914a91b3e5"
+                        loading="lazy"
+                        decoding="async"
+                        class="w-[48px] h-[48px] md:w-[64px] md:h-[64px]"
+                      />
+                      <div
+                        class="flex flex-col text-center justify-center items-center text-[--draw-content-text] font-[400] text-[12px] leading-[14px] mt-[6px] max-w-[80px] h-[28px] md:text-[14px] md:mt-[10px] md:max-w-[110px] md:h-[28px]"
+                        dir="ltr"
+                      >
+                        <div class="Turntable_award__PrZRr">
+                          <span>$20,000 + </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="btn-container">
+              <a href="register.html" class="hero-btn" data-translate="join"
+                >Join</a
+              >
+            </div>
+          </div>
+          <div
+            class="activities_containerPadding__bieiX"
+            style="padding: 0 20px; max-width: 1200px; margin: 0 auto"
+          >
+            <div>
+              <div
+                class="pt-[40px] md:pt-[60px] lg:pt-[80px] nxl:pt-[100px] mb-[24px] md:mb-[32px] lg:mb-[40px] nxl:mb-[50px]"
+                style="padding: 0 15px"
+              >
+                <h3
+                  class="mb-[8px] md:mb-[10px] lg:mb-[12px] nxl:mb-[12px] text-[--tit-text-color]"
+                >
+                  <div class="flex justify-center items-center">
+                    <div
+                      class="text-[16px] leading-[20px] font-[700] text-center md:text-[24px] md:leading-[34px] lg:text-[30px] lg:leading-[42px] nxl:text-[32px] nxl:leading-[50px] activities_award__IxutR"
+                      data-translate="rules"
+                    >
+                      Rules
+                    </div>
+                    <span></span>
+                  </div>
+                </h3>
+              </div>
+            </div>
+
+            <div
+              class="activities_ruleBox__nVdwv text-[14px] md:text-[16px] lg:text-[20px] text-[--tit-text-color]"
+              style="padding: 0 20px; line-height: 1.6"
+            >
+              <div>
+                <div
+                  class="ace-line ace-line old-record-id-Ru5Zd1KD5o17ILxzgIoljpsigQy"
+                >
+                  <div>
+                    <div
+                      class="ace-line ace-line old-record-id-ZR0Cdc3OloRD5dxBVWplG1xagLd"
+                      style="margin-bottom: 15px"
+                    >
+                      <span
+                        style="color: rgb(5, 195, 221); font-weight: bold"
+                        data-translate="profit"
+                      >
+                        Profit boost! ETH savings with up 15% APR!
+                        <a
+                          style="
+                            color: rgb(5, 195, 221);
+                            text-decoration: underline;
+                          "
+                          href="https://www.bitget.com/earning/savings?secondBizLine=SavingsFixed&productId=1281847754993590272&anonymous=1"
+                          rel=""
+                          >Buy now!</a
+                        >
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  class="ace-line ace-line old-record-id-Ru5Zd1KD5o17ILxzgIoljpsigQy"
+                  style="margin-bottom: 20px"
+                >
+                  &nbsp;
+                </div>
+
+                <div
+                  class="ace-line ace-line old-record-id-Ru5Zd1KD5o17ILxzgIoljpsigQy"
+                  style="margin-bottom: 15px"
+                  data-translate="terms"
+                >
+                  <strong>Terms & Conditions:</strong>
+                </div>
+
+                <div
+                  class="ace-line ace-line old-record-id-OfwgdQcMvoQ6SwxcJfplPA1UgBd"
+                  style="margin-bottom: 10px"
+                  data-translate="camp"
+                >
+                  1. The campaign is only available for users from
+                  Canada/Australia/DACH/French/Italian/Sweden/Poland and other
+                  europe regions.
+                </div>
+
+                <div
+                  class="ace-line ace-line old-record-id-Ve3ddahWKoTo3cxr92blni31gmh"
+                  style="margin-bottom: 10px"
+                  data-translate="total"
+                >
+                  2. The total incentive pool is 20,000 USDT, first come first
+                  served.
+                </div>
+
+                <div
+                  class="ace-line ace-line old-record-id-QuNZdaBxbozI7oxHXXwllPqJgTc"
+                  style="margin-bottom: 10px"
+                  data-translate="users"
+                >
+                  3. Users must complete KYC verification to get incentives. API
+                  and broker users are not allowed to participate in this event.
+                </div>
+
+                <div
+                  class="ace-line ace-line old-record-id-JufJd38U4oYnAdx7SbblL1hMgVd"
+                  style="margin-bottom: 10px"
+                  data-translate="rewards"
+                >
+                  4. Rewards will be distributed within 10 business days after
+                  the end of the campaign. This event does not share rewards
+                  with others.
+                </div>
+
+                <div
+                  class="ace-line ace-line old-record-id-SqWKd9IHZocnNsxd2A5llvEJgUc"
+                  style="margin-bottom: 10px"
+                  data-translate="five"
+                >
+                  5. Users who register with multiple accounts using the same IP
+                  address will not be eligible for the rewards.
+                </div>
+
+                <div
+                  class="ace-line ace-line old-record-id-LCaVdzfjOoA9lax4EkjlT6ukgpe"
+                  style="margin-bottom: 20px"
+                  data-translate="six"
+                >
+                  6. Bitget may disqualify users from participating in this
+                  event if any violation of the rules or immoral behaviors are
+                  detected, and reserves the right to change the event rules.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 
+        - #ABOUT
+      -->
+
+      <section class="section about" aria-label="about" data-section>
+        <div class="container">
+          <figure class="about-banner">
+            <img
+              src="./assets/images/about-banner.png"
+              width="748"
+              height="436"
+              loading="lazy"
+              alt="about banner"
+              class="w-100"
+            />
+          </figure>
+
+          <div class="about-content">
+            <h2 class="h2 section-title" data-translate="what_is">
+              What Is Bitget Wallet
+            </h2>
+
+            <p class="section-text" data-translate="wallet_desc">
+              Bitget Wallet (formerly BitKeep) is a multi-chain cryptocurrency
+              wallet and decentralized finance (DeFi) platform that supports
+              over 100 blockchains.
+            </p>
+
+            <ul class="section-list">
+              <li class="section-item">
+                <div class="title-wrapper">
+                  <h3 class="h3 list-title" data-translate="celebrate">
+                    🎉 Celebrate Bitget Wallet’s 7th Anniversary with Exclusive
+                    Airdrops! 🎉
+                  </h3>
+                </div>
+
+                <p class="item-text" data-translate="celebrate_desc">
+                  To thank our loyal community, Bitget Wallet is launching a
+                  special 7th Anniversary Airdrop Giveaway for both old and new
+                  users!
+                </p>
+              </li>
+
+              <li class="section-item">
+                <div class="title-wrapper">
+                  <h3 class="h3 list-title" data-translate="participate">
+                    How to participate
+                  </h3>
+                </div>
+
+                <p class="item-text" data-translate="participate_desc">
+                  Download Bitget Wallet, <br />
+                  complete registration, <br />
+                  and perform a swap or deposit. <br />
+                  follow the guidance of our admins <br />
+                  for an easy and smooth process of winning the airdrops
+                </p>
+                <h3 class="item-text" data-translate="participate_desc1">
+                  Download Bitget Wallet, <br />
+                  complete registration, <br />
+                  and perform a swap or deposit. <br />
+                  follow the guidance of our admins <br />
+                  for an easy and smooth process of winning the airdrops
+                </h3>
+                <p class="item-text" data-translate="participate_desc2">
+                  Download Bitget Wallet, <br />
+                  complete registration, <br />
+                  and perform a swap or deposit. <br />
+                  follow the guidance of our admins <br />
+                  for an easy and smooth process of winning the airdrops
+                </p>
+                <p class="item-text" data-translate="participate_desc3">
+                  Download Bitget Wallet, <br />
+                  complete registration, <br />
+                  and perform a swap or deposit. <br />
+                  follow the guidance of our admins <br />
+                  for an easy and smooth process of winning the airdrops
+                </p>
+                <p class="item-text" data-translate="participate_desc4">
+                  Download Bitget Wallet, <br />
+                  complete registration, <br />
+                  and perform a swap or deposit. <br />
+                  follow the guidance of our admins <br />
+                  for an easy and smooth process of winning the airdrops
+                </p>
+                <h3 class="item-text" data-translate="participate_desc5">
+                  Download Bitget Wallet, <br />
+                  complete registration, <br />
+                  and perform a swap or deposit. <br />
+                  follow the guidance of our admins <br />
+                  for an easy and smooth process of winning the airdrops
+                </h3>
+                <p class="item-text" data-translate="participate_desc6">
+                  Download Bitget Wallet, <br />
+                  complete registration, <br />
+                  and perform a swap or deposit. <br />
+                  follow the guidance of our admins <br />
+                  for an easy and smooth process of winning the airdrops
+                </p>
+                <p class="item-text" data-translate="participate_desc7">
+                  Download Bitget Wallet, <br />
+                  complete registration, <br />
+                  and perform a swap or deposit. <br />
+                  follow the guidance of our admins <br />
+                  for an easy and smooth process of winning the airdrops
+                </p>
+                <p class="item-text" data-translate="participate_desc8">
+                  Download Bitget Wallet, <br />
+                  complete registration, <br />
+                  and perform a swap or deposit. <br />
+                  follow the guidance of our admins <br />
+                  for an easy and smooth process of winning the airdrops
+                </p>
+                <p class="item-text" data-translate="participate_desc9">
+                  Download Bitget Wallet, <br />
+                  complete registration, <br />
+                  and perform a swap or deposit. <br />
+                  follow the guidance of our admins <br />
+                  for an easy and smooth process of winning the airdrops
+                </p>
+              </li>
+            </ul>
+
+            <div class="btn-container">
+              <a href="register.html" class="hero-btn" data-translate="join"
+                >Join</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+      <a
+        href="https://wa.me/447500094986"
+        target="_blank"
+        style="
+          position: fixed;
+          bottom: 50px;
+          right: 50px;
+          z-index: 1000;
+          width: 60px;
+          height: 60px;
+          cursor: pointer;
+          transition: transform 0.3s ease;
+        "
+      >
+        <img
+          src="./assets/images/mobile.png"
+          alt="Contact us via mobile"
+          loading="lazy"
+          style="width: 100%; height: 100%; object-fit: contain"
+          onmouseover="this.parentElement.style.transform='scale(1.1)'"
+          onmouseout="this.parentElement.style.transform='scale(1)'"
+        />
+      </a>
+    </main>
+    <!-- 
+    - #FOOTER
+  -->
+
+    <footer class="footer">
+      <div class="footer-top" data-section>
+        <div class="container">
+          <div class="footer-brand">
+            <a href="#" class="logo">
+              <img
+                src="./assets/images/logo.svg"
+                width="50"
+                height="50"
+                alt="Cryptex logo"
+              />
+              Bitget Wallet
+            </a>
+            <div class="footer-contact-card">
+              <a href="#" class="contact-link">
+                <h2 class="footer-title" data-translate="talk">Let's talk!</h2>
+                <ul
+                  class="social-list"
+                  style="
+                    list-style: none;
+                    display: flex;
+                    gap: 15px;
+                    padding: 0;
+                    margin: 0;
+                    justify-content: center;
+                  "
+                >
+                  <li>
+                    <a
+                      href="https://discordapp.com/users/1348820086731051039"
+                      class="social-link"
+                      style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 50%;
+                        background-color: #5865f2;
+                        color: white;
+                        font-size: 20px;
+                        text-decoration: none;
+                        transition: all 0.3s ease;
+                      "
+                    >
+                      <i class="fab fa-discord"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="https://wa.me/447500094986"
+                      class="social-link"
+                      style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 50%;
+                        background-color: #25d366;
+                        color: white;
+                        font-size: 20px;
+                        text-decoration: none;
+                        transition: all 0.3s ease;
+                      "
+                    >
+                      <i class="fab fa-whatsapp"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="https://invite.viber.com/?g=t9z3GDzDfFRJ6UzQ9KavQI_z8ALa2qPg"
+                      class="social-link"
+                      style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 50%;
+                        background-color: #7360f2;
+                        color: white;
+                        font-size: 20px;
+                        text-decoration: none;
+                        transition: all 0.3s ease;
+                      "
+                    >
+                      <i class="fab fa-viber"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="https://t.me/+5B-WWR_HEMY5Zjk0"
+                      class="social-link"
+                      style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 50%;
+                        background-color: #0088cc;
+                        color: white;
+                        font-size: 20px;
+                        text-decoration: none;
+                        transition: all 0.3s ease;
+                      "
+                    >
+                      <i class="fab fa-telegram"></i>
+                    </a>
+                  </li>
+                </ul>
+
+                <a
+                  href="mailto:bitgetwalletorg@gmail.com"
+                  class="footer-contact-link"
+                  >bitgetwalletorg@gmail.com</a
+                >
+              </a>
+            </div>
+          </div>
+
+          <ul class="footer-list">
+            <li>
+              <p class="footer-list-title" data-translate="services">
+                Services
+              </p>
+            </li>
+
+            <li>
+              <a href="#" class="footer-link" data-translate="buy_crypto"
+                >FAQ</a
+              >
+            </li>
+
+            <li>
+              <a href="#" class="footer-link" data-translate="markets"
+                >Markets</a
+              >
+            </li>
+
+            <li>
+              <a href="#" class="footer-link" data-translate="trade"
+                >Tranding Fee</a
+              >
+            </li>
+
+            <li>
+              <a href="#" class="footer-link" data-translate="ref"
+                >Referral Program</a
+              >
+            </li>
+          </ul>
+
+          <ul class="footer-list">
+            <li>
+              <p class="footer-list-title" data-translate="about_us">
+                About Us
+              </p>
+            </li>
+
+            <li>
+              <a href="#" class="footer-link" data-translate="auth"
+                >Authenticity Check</a
+              >
+            </li>
+
+            <li>
+              <a href="#" class="footer-link" data-translate="blog">Blog</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="container">
+          <p class="copyright" data-translate="right">
+            &copy; 2025 Bitget All Rights Reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- 
+    - custom js link
+  -->
+    <script src="./assets/js/script.js" defer></script>
+
+    <!-- 
+    - ionicon link
+  -->
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+    <script>
+      // Translation data
+      const translations = {
+        en: {
+          homepage: "Homepage",
+          buy_crypto: "FAQ",
+          markets: "Markets",
+          trade: "Trade",
+          prom: "Promotion ends in",
+          about_airdrops: "About airdrops",
+          hero_title:
+            "Readily accessible to only elite elf that's why our appreciation of the fantastic manner in which the mania has been conducted continues to be available.     Join the HGB Holders Community, participate in the event and complete the  tasks for a chance to win 5000 HGB in rewards!",
+          aird: "Existing Users BGB Holding Rewards + New Users Get 1 BGB Upon Joining",
+          bounties: "AMA Theme: The Ultimate Guide to HGB Airdrop Returns",
+          bounties_sub:
+            "Thank you for your support! Stay tuned for more VIP perks and incentives.Whether you're a newcomer or a seasoned fellow citizen, holding HGB opens the door to unique rewards and benefits, makes it elegantly simple for consumers to submit continuously! The activities of GOOD DEED BANK were recognised with, airdrop benefits, and trading advantages, empowering you to unlock the full potential of HGB which is regulated by a separate Terms and Service and Privacy Policy!",
+          rules: "Ruled Instructions Packed To Connect.",
+          what_is: "What Is Bitget Wallet  ⁉️",
+          wallet_desc:
+            "Since 2018, we have been celebrating an exchange anniversary committed to helping users trade smarter by providing a secure Airdrop returns.People expect money to move as quickly as emails. That's why we are working to make instant exclusive spot reality for everyone in the euro area.We provide highly specialized services in the fields of project & export finance and structured finance to meet diverse grid needs.",
+          celebrate:
+            "Celebrate Bitget Wallet's 7th Anniversary with Exclusive Airdrops!  🚥♻️",
+          celebrate_desc:
+            "To thank our HGB holders, Bitget is launching the 'HGB elite glory celebration' with €§ft in prizes, exclusive merch, and more! Join the community promotion, under the age of 25 will not be eligible to pay. By automating regular promotion to exclusive claims Airdrop workflow, this solution enables subscription-based regional businesses to free up more time for attracting new customers by utilizing local government and business connections through our global network. Without prejudice to its primary objective, the MNB shall support the maintenance of the stability of the system of financial intermediation, the enhancement of its resilience, its sustainable contribution. Independently advertising support, the Banking sector will not solicit at places and\or  take  inappropriate Limited-recourse project financing to Both New and Existing Users customers. ",
+          participate: "How we got here; How you participate.  ",
+          participate_desc:
+            "Download it's protocols, complete registration and perform a personal&nbsp;procedures, which may include information regarding the nature and purpose of the customer's Airdrop check, prior financial relationships, anticipated account activity, business location and, if applicable, follow the guidance of our admins for an easy and smooth process of winning the airdrops entity's. Regional officers and directors according to your local address.",
+          participate_desc1: " Three factors drove successful stabilization:",
+          participate_desc2:
+            " 1. An experienced on-site management team executing targeted leasing strategies to only few selections across Budapest individuals",
+          participate_desc3:
+            "2. A unique market position as one of few detached single-family rental communities in Eurozone.",
+          participate_desc4:
+            "3. Premium bond Airdrop returns on regular basis producing higher-than-average prospect conversion rates |fT\\eU|.",
+          participate_desc5:
+            "Monitoring Accounts for Suspicious Activity issues.",
+          participate_desc6:
+            "We will monitor account activity for unusual size, volume, pattern or type of transactions, taking into account risk factors and red flags that are appropriate to our business. Licensed by the Department of Financial Protection and Innovation.Red flags that signal if your banking address is not 🚫 eligible to take the&nbsp;possible Airdrop returns, or money miss attempt laundering or terrorist financing include, but are not limited to:",
+          participate_desc7:
+            "1. Potential Red Flags in Customer to Diligence and Interactions with suspicious identification.",
+          participate_desc8:
+            "2. This indicator may apply to account closing and to-no interaction subsequent to account opening.",
+          participate_desc9:
+            "You can withdraw your consent at any time. Your personal data will no longer be processed once you have withdrawn your consent but prior processing will remain lawful.",
+          join: "Join In Choose Selections of Airdrop Rewards.",
+          services: "Services",
+          about_us: "About Us",
+          profit:
+            "Profit Boost! The core of BITGÉT is it's financial service on newcomers user systems and products or major Airdrops to existing users resident, services returns, and comprehensive track of your transactions",
+          terms: "Terms & Conditions:",
+          camp: "1. The campaign is only available for users from Canada/Australia/DACH/French/Italian/Sweden/Poland and other europe regions.",
+          total:
+            " 2. The total incentive pool is 20,000 USDT, first come first served.",
+          users:
+            " 3. Users must complete KYC verification to get incentives. API and broker users are not allowed to participate in this event.",
+          rewards:
+            " 4. Rewards will be distributed within 6 business days / 2 weeks after the end of the campaign. This event does not share rewards with ",
+          five: " 5. Active participants users whom  embrace initiatives where joint action is required for success verify announcements with their banking sector. Duplication of registered multiple accounts  abuse  advanced human rights. Services disabled for end-users.",
+          six: " 6. Bitget may disqualify users from participating in this event if any violation of the rules or immoral behaviors are detected, and reserves the right to change the event rules.",
+          talk: "Contact us !",
+          ref: "Referral Program",
+          auth: "Authenticity Check",
+          blog: "Blog",
+          right: "2025 Bitget All Rights Reserved.",
+          wheel1: "BITGET wheel of fortune",
+          wheel_p:
+            "Thank you for being part of our incredible journey! To show our gratitude, we're giving away exclusive free airdrops to our amazing community.",
+          wheel_1h3:
+            "Spin the Wheel of Fortune below for your chance to win a lucky prize!",
+          wheel_2h3:
+            "Don't miss out—your next spin could be a big win!    Spin Now & Claim Your Reward!",
+          wheel_cab1: "Click to Claim Your Reward",
+          wheel_cab0: "Congratulations! You have won",
+          wheel_btn: "Close",
+        },
+        hu: {
+          homepage: "Kezdőlap",
+          buy_crypto: "GYIK",
+          markets: "Piacok",
+          trade: "Kereskedés",
+          about_airdrops: "Airdropokról",
+          prom: "Az akció véget ér",
+          hero_title:
+            "Kizárólag elit elfek számára elérhető, ezért továbbra is nagyra értékeljük a mániát a fantasztikus módon. Csatlakozz a HGB Tulajdonosok Közösségéhez, vegyél részt az eseményen, és teljesítsd a feladatokat, hogy esélyed legyen 5000 HGB jutalomra!",
+          aird: "Meglévő felhasználók BGB Holding Rewards + Új felhasználók 1 BGB-t kapnak csatlakozáskor",
+          bounties: "Jutalmak",
+          bounties_sub:
+            "Köszönjük a támogatást! Maradjon velünk további VIP jutalmakért és ösztönzőkért! Akár újonc, akár tapasztalt polgártárs, a HGB birtoklása egyedi jutalmakat és előnyöket nyit meg, és elegánsan egyszerűvé teszi a fogyasztók számára a folyamatos beküldést! A jó banki okiratok tevékenységét elismeréssel, airdrop előnyökkel és kereskedési előnyökkel ismerték el, lehetővé téve, hogy kiaknázza a HGB teljes potenciálját, amelyet külön Felhasználási Feltételek és Adatvédelmi Szabályzat szabályoz!",
+          rules: "Vonalba csomagolt utasítások a csatlakozáshoz.",
+          what_is: "Mi az a Bitget pénztárca? ⁉️",
+          wallet_desc:
+            "A Bitget Wallet (korábban BitKeep) egy több láncot támogató kriptovaluta pénztárca és decentralizált pénzügyi (DeFi) platform, amely több mint 100 blokkláncot támogat.",
+          celebrate:
+            "Ünnepeld a Bitget Wallet 7. évfordulóját exkluzív Airdropokkal! 🚥♻️",
+          celebrate_desc:
+            "HGB-tulajdonosaink megköszönésére a Bitget elindítja a „HGB elit dicsőség ünnepét” €§ft értékű nyereményekkel, exkluzív árucikkekkel és sok mással! Csatlakozzon a közösségi promócióhoz, 25 év alattiak nem jogosultak fizetésre. Az exkluzív igénylések rendszeres promóciójának automatizálásával az Airdrop munkafolyamaton keresztül ez a megoldás lehetővé teszi az előfizetéses regionális vállalkozások számára, hogy több időt szabadítsanak fel új ügyfelek vonzására a helyi önkormányzati és üzleti kapcsolatok kihasználásával globális hálózatunkon keresztül. Elsődleges céljának sérelme nélkül az MNB támogatja a pénzügyi közvetítőrendszer stabilitásának fenntartását, ellenálló képességének növelését és fenntartható hozzájárulását. A bankszektor a támogatások független hirdetése mellett nem fog helyben kéregetni és/vagy nem fogadni el nem megfelelő korlátozott visszafizetésű projektfinanszírozást sem új, sem meglévő felhasználók számára.",
+          participate: "Hogyan jutottunk el idáig; Hogyan vehetsz részt benne.",
+          participate_desc:
+            "Töltse le a protokollokat, fejezze be a regisztrációt, és végezzen el egy személyes ügyintézést, amely magában foglalhatja az ügyfél Airdrop-ellenőrzésének jellegére és céljára, korábbi pénzügyi kapcsolataira, várható számlatevékenységére, üzleti helyszínére vonatkozó információkat, és adott esetben kövesse adminisztrátoraink útmutatásait az Airdrop-szervezet regionális tisztviselőinek és igazgatóinak megnyerésének egyszerű és zökkenőmentes folyamata érdekében a helyi címe szerint.",
+          participate_desc1:
+            " Három tényező segítette a sikeres stabilizációt:",
+          participate_desc2:
+            "1. Tapasztalt, helyszíni menedzsmentcsapat, amely célzott lízingstratégiákat valósít meg néhány budapesti magánszemély számára.",
+          participate_desc3:
+            "2. Egyedülálló piaci pozíció, mint az eurozónában található kevés különálló, családi házas bérlemény egyike.",
+          participate_desc4:
+            "3. A prémium kötvény Airdrop rendszeresen hozamot biztosít, ami az átlagosnál magasabb potenciális ügyfél-konverziós arányokat eredményez |fT // eU|.",
+          participate_desc5:
+            "Fiókok figyelése gyanús tevékenységek szempontjából.",
+          participate_desc6:
+            "Figyelemmel kísérjük a számlaaktivitást a szokatlan méretű, volumenű, mintázatú vagy típusú tranzakciók szempontjából, figyelembe véve a vállalkozásunkra jellemző kockázati tényezőket és vészjelzéseket. A Pénzügyi Védelmi és Innovációs Minisztérium engedélyével. A vészjelzések, amelyek azt jelzik, ha banki címe nem jogosult az esetleges Airdrop-visszatérítések fogadására, vagy pénzmosási kísérletre vagy terrorizmusfinanszírozásra, többek között:",
+          participate_desc7:
+            "1. Potenciális vészjelzések az ügyfél-átvilágításban és a gyanús azonosítással járó interakciókban.",
+          participate_desc8:
+            "2. Ez a mutató vonatkozhat a számlazárásra és a számlanyitást követő interakció hiányára.",
+          participate_desc9:
+            "Hozzájárulását bármikor visszavonhatja. Személyes adatait a visszavonást követően a továbbiakban nem kezeljük, de a korábbi adatkezelés továbbra is jogszerű marad.",
+          join: "Csatlakozás",
+          services: "Szolgáltatások",
+          about_us: "Rólunk",
+          profit:
+            "Profitnövelés! A BITGÉT lényege a pénzügyi szolgáltatás új felhasználói rendszereken és termékeken, vagy nagyobb Airdropokon keresztül a meglévő felhasználóknak, a szolgáltatások megtérülése és a tranzakciók átfogó nyomon követése.",
+          terms: "Általános Szerződési Feltételek:",
+          camp: "1. A kampány csak Kanadából/Ausztráliából/DACH-ból/Francia/olasz/Svédország/Lengyelország és más európai régiók felhasználói számára érhető el.",
+          total: "2. A teljes ösztönző alap 20 000 USDT, érkezési sorrendben.",
+          users:
+            "3. A felhasználóknak el kell végezniük a KYC ellenőrzését, hogy ösztönzőket kapjanak. Az API és bróker felhasználók nem vehetnek részt ezen az eseményen.",
+          rewards:
+            "4. A jutalmakat a kampány végét követő 6 munkanapon belül / 2 héten belül osztjuk ki. Ez az esemény nem osztja meg a jutalmakat",
+          five: "5. Az aktív résztvevő felhasználók, akik olyan kezdeményezéseket támogatnak, ahol a sikerhez közös fellépés szükséges, ellenőrzik a bejelentéseiket a bankszektorukkal. Több regisztrált fiók duplikációja sérti a fejlett emberi jogokat. Szolgáltatások letiltása a végfelhasználók számára.",
+          six: "6. A Bitget kizárhatja a felhasználókat az eseményből, ha szabálysértést vagy erkölcstelen magatartást észlel, és fenntartja a jogot az esemény szabályainak megváltoztatására.",
+          talk: "Kapcsolat! ",
+          ref: "Ajánlói program",
+          auth: "Eredetiség ellenőrzése",
+          blog: "Blog",
+          right: "2025 Bitget Minden jog fenntartva.",
+          wheel1: "BITGET szerencsekerék",
+          wheel_p:
+            "Köszönjük, hogy részesei vagytok hihetetlen utazásunknak! Hálánk jeléül exkluzív ingyenes airdropokat sorsolunk ki csodálatos közösségünknek.",
+          wheel_1h3:
+            "Pörgesd meg az alábbi Szerencsekereket, és nyerj egy értékes ajándékot!",
+          wheel_2h3:
+            "Ne hagyd ki – a következő pörgetésed nagy nyeremény lehet! Pörgess most, és igényeld a jutalmadat!",
+          wheel_cab1: "Kattintson a jutalom igényléséhez",
+          wheel_cab0: "Gratulálunk! Nyertél!",
+          wheel_btn: "Közeli",
+        },
+        el: {
+          homepage: "Αρχική σελίδα",
+          buy_crypto: "Συχνές ερωτήσεις",
+          markets: "Αγορές",
+          trade: "Συναλλαγή",
+          about_airdrops: "Σχετικά με τα airdrops",
+          prom: "Η προσφορά λήγει σε",
+          hero_title:
+            "Διαθέσιμο μόνο σε επίλεκτα ξωτικά, συνεχίζουμε να εκτιμούμε τη μανία με έναν φανταστικό τρόπο. Γίνετε μέλος της Κοινότητας Ιδιοκτητών HGB, συμμετάσχετε στην εκδήλωση και ολοκληρώστε τις εργασίες για μια ευκαιρία να κερδίσετε 5.000 HGB!",
+          aird: "Οι υπάρχοντες χρήστες BGB Holding Rewards + οι νέοι χρήστες λαμβάνουν 1 BGB κατά την εγγραφή τους",
+          bounties: "Θέμα AMA: Ο απόλυτος οδηγός για επιστροφές HGB Airdrop",
+          bounties_sub:
+            "Σας ευχαριστούμε για την υποστήριξή σας! Μείνετε συντονισμένοι για περισσότερα VIP προνόμια και κίνητρα. Είτε είστε νεοφερμένος είτε έμπειρος συμπολίτης, η κατοχή HGB ανοίγει την πόρτα σε μοναδικές ανταμοιβές και οφέλη, διευκολύνοντας τους καταναλωτές να υποβάλλουν συνεχώς αιτήσεις! Οι δραστηριότητες καλής τραπεζικής πράξης αναγνωρίστηκαν με οφέλη από το airdrop και πλεονεκτήματα συναλλαγών, δίνοντάς σας τη δυνατότητα να ξεκλειδώσετε όλες τις δυνατότητες του HGB, οι οποίες ρυθμίζονται από ξεχωριστούς Όρους και Παροχές και Πολιτική Απορρήτου!",
+          rules: "Οδηγίες με γραμμές συσκευασμένες για σύνδεση.",
+          what_is: "Τι είναι το Bitget Wallet; ⁉️",
+          wallet_desc:
+            "Το Bitget Wallet (παλαιότερα BitKeep) είναι ένα πολυ-αλυσίδων πορτοφόλι κρυπτονομισμάτων και αποκεντρωμένη πλατφόρμα χρηματοοικονομικών (DeFi) που υποστηρίζει πάνω από 100 αλυσίδες.",
+          celebrate:
+            "Γιορτάστε την 7η επέτειο του Bitget Wallet με αποκλειστικές προσφορές Airdrops! 🚥♻️",
+          celebrate_desc:
+            "Για να ευχαριστήσει τους κατόχους HGB μας, η Bitget ξεκινά την «εορτή δόξας HGB elite» με €§ft σε βραβεία, αποκλειστικά εμπορεύματα και πολλά άλλα! Συμμετέχετε στην προωθητική ενέργεια της κοινότητας, άτομα κάτω των 25 ετών δεν θα δικαιούνται να πληρώσουν. Αυτοματοποιώντας την τακτική ροή εργασίας Airdrop για αποκλειστικές προωθητικές ενέργειες, αυτή η λύση επιτρέπει στις περιφερειακές επιχειρήσεις που βασίζονται σε συνδρομές να απελευθερώσουν περισσότερο χρόνο για την προσέλκυση νέων πελατών, αξιοποιώντας τις συνδέσεις της τοπικής αυτοδιοίκησης και των επιχειρήσεων μέσω του παγκόσμιου δικτύου μας. Με την επιφύλαξη του πρωταρχικού της στόχου, η MNB θα υποστηρίξει τη διατήρηση της σταθερότητας του συστήματος χρηματοπιστωτικής διαμεσολάβησης, την ενίσχυση της ανθεκτικότητάς της και τη βιώσιμη συμβολή της. Διαφημίζοντας ανεξάρτητα την υποστήριξη, ο τραπεζικός τομέας δεν θα ζητά σε μέρη και/ή δεν θα λαμβάνει ακατάλληλη χρηματοδότηση έργων περιορισμένης προσφυγής τόσο σε νέους όσο και σε υφιστάμενους χρήστες.",
+          participate: "Πώς φτάσαμε εδώ· Πώς συμμετέχετε εσείς.",
+          participate_desc:
+            "Κατεβάστε τα πρωτόκολλά του, ολοκληρώστε την εγγραφή και εκτελέστε προσωπικές διαδικασίες, οι οποίες μπορεί να περιλαμβάνουν πληροφορίες σχετικά με τη φύση και τον σκοπό της επιταγής Airdrop του πελάτη, προηγούμενες οικονομικές σχέσεις, την αναμενόμενη δραστηριότητα του λογαριασμού, την τοποθεσία της επιχείρησης και, εάν ισχύει, ακολουθήστε τις οδηγίες των διαχειριστών μας για μια εύκολη και ομαλή διαδικασία απόκτησης του airdrops. Περιφερειακοί υπάλληλοι και διευθυντές σύμφωνα με την τοπική σας διεύθυνση.",
+          participate_desc1:
+            " Τρεις παράγοντες οδήγησαν στην επιτυχή σταθεροποίηση:",
+          participate_desc2:
+            "1. Μια έμπειρη ομάδα διαχείρισης επί τόπου που εκτελεί στοχευμένες στρατηγικές μίσθωσης σε λίγες μόνο επιλογές σε άτομα στη Βουδαπέστη",
+          participate_desc3:
+            "2. Μια μοναδική θέση στην αγορά ως μία από τις λίγες ανεξάρτητες κοινότητες ενοικίασης μονοκατοικιών στην Ευρωζώνη.",
+          participate_desc4:
+            "3. Το premium bond Airdrop αποδίδει σε τακτική βάση, παράγοντας υψηλότερα από το μέσο όρο ποσοστά μετατροπής υποψήφιων επενδυτών |fT // eU|.",
+          participate_desc5:
+            "Παρακολούθηση Λογαριασμών για Ύποπτη Δραστηριότητα.",
+          participate_desc6:
+            "Θα παρακολουθούμε τη δραστηριότητα του λογαριασμού για ασυνήθιστο μέγεθος, όγκο, μοτίβο ή τύπο συναλλαγών, λαμβάνοντας υπόψη παράγοντες κινδύνου και προειδοποιητικά σήματα που είναι κατάλληλα για την επιχείρησή μας. Αδειοδοτημένο από το Υπουργείο Οικονομικής Προστασίας και Καινοτομίας. Τα προειδοποιητικά σήματα που σηματοδοτούν εάν η τραπεζική σας διεύθυνση δεν είναι 🚫 επιλέξιμη για να λάβετε τις πιθανές επιστροφές Airdrop ή απόπειρα απώλειας χρημάτων για ξέπλυμα χρήματος ή χρηματοδότηση της τρομοκρατίας περιλαμβάνουν, ενδεικτικά:",
+          participate_desc7:
+            "1. Πιθανές προειδοποιητικές σημαίες στην επιμέλεια πελατών και στις αλληλεπιδράσεις με ύποπτη ταυτοποίηση.",
+          participate_desc8:
+            "2. Αυτός ο δείκτης μπορεί να ισχύει για το κλείσιμο λογαριασμού και την απουσία αλληλεπίδρασης μετά το άνοιγμα του λογαριασμού.",
+          participate_desc9:
+            "Μπορείτε να ανακαλέσετε τη συγκατάθεσή σας ανά πάσα στιγμή. Τα προσωπικά σας δεδομένα δεν θα υποβάλλονται πλέον σε επεξεργασία μόλις ανακαλέσετε τη συγκατάθεσή σας, αλλά η προηγούμενη επεξεργασία θα παραμείνει νόμιμη.",
+          join: "Εγγραφή",
+          services: "Υπηρεσίες",
+          about_us: "Σχετικά με εμάς",
+          profit:
+            "Αύξηση Κέρδους! Ο πυρήνας του BITGÉT είναι η οικονομική υπηρεσία σε συστήματα και προϊόντα νέων χρηστών ή σε μεγάλα Airdrops σε υπάρχοντες χρήστες, οι επιστροφές υπηρεσιών και η ολοκληρωμένη παρακολούθηση των συναλλαγών σας.",
+          terms: "Όροι & Προϋποθέσεις:",
+          camp: "1. Η καμπάνια είναι διαθέσιμη μόνο για χρήστες από τον Καναδά/Αυστραλία/DACH/Γαλλικά/Ιταλικά/Σουηδία/Πολωνία και άλλες περιοχές της Ευρώπης.",
+          total:
+            "2. Το συνολικό ποσό κινήτρων είναι 20.000 USDT, με σειρά προτεραιότητας.",
+          users:
+            "3. Οι χρήστες πρέπει να ολοκληρώσουν την επαλήθευση KYC για να λάβουν κίνητρα. Οι χρήστες API και μεσίτες δεν επιτρέπεται να συμμετέχουν σε αυτό το συμβάν.",
+          rewards:
+            "4. Οι ανταμοιβές θα διανεμηθούν εντός 6 εργάσιμων ημερών / 2 εβδομάδων μετά το τέλος της καμπάνιας. Αυτή η εκδήλωση δεν μοιράζεται ανταμοιβές με",
+          five: "5. Οι ενεργοί συμμετέχοντες χρήστες που υιοθετούν πρωτοβουλίες όπου απαιτείται κοινή δράση για την επιτυχία, επαληθεύουν τις ανακοινώσεις με τον τραπεζικό τους τομέα. Η διπλή καταχώριση πολλαπλών λογαριασμών αποτελεί παραβίαση προηγμένων ανθρωπίνων δικαιωμάτων. Οι υπηρεσίες είναι απενεργοποιημένες για τους τελικούς χρήστες.",
+          six: "6. Το Bitget μπορεί να αποκλείσει τους χρήστες από τη συμμετοχή σε αυτό το συμβάν εάν εντοπιστεί οποιαδήποτε παραβίαση των κανόνων ή ανήθικες συμπεριφορές και διατηρεί το δικαίωμα να αλλάξει τους κανόνες της εκδήλωσης.",
+          talk: "Ας Επικοινωνήστε μαζί μας! ",
+          ref: "Πρόγραμμα παραπομπής",
+          auth: "Έλεγχος γνησιότητας",
+          blog: "Ιστολόγιο",
+          right: "2025 Bitget Με την επιφύλαξη παντός δικαιώματος.",
+          wheel1: "BITGET τροχός της τύχης",
+          wheel_p:
+            "Σας ευχαριστούμε που συμμετέχετε στο απίστευτο ταξίδι μας! Για να δείξουμε την ευγνωμοσύνη μας, χαρίζουμε αποκλειστικά δωρεάν airdrops στην καταπληκτική μας κοινότητα.",
+          wheel_1h3:
+            "Γυρίστε τον Τροχό της Τύχης παρακάτω για την ευκαιρία σας να κερδίσετε ένα τυχερό έπαθλο!",
+          wheel_2h3:
+            "Μην το χάσετε—η επόμενη περιστροφή σας μπορεί να είναι μια μεγάλη νίκη! Περιστρέψτε τώρα και διεκδικήστε την ανταμοιβή σας!",
+          wheel_cab1: "Κάντε κλικ για να διεκδικήσετε την ανταμοιβή σας",
+          wheel_cab0: "Συγχαρητήρια! Νικήσατε",
+          wheel_btn: "Κοντά",
+        },
+      };
+
+      // Function to change language
+      function changeLanguage() {
+        const lang = document.getElementById("language-selector").value;
+        document.documentElement.lang = lang;
+
+        // Update all translatable elements
+        document.querySelectorAll("[data-translate]").forEach((element) => {
+          const key = element.getAttribute("data-translate");
+          if (translations[lang] && translations[lang][key]) {
+            element.textContent = translations[lang][key];
+          }
+        });
+      }
+
+      // Initialize with default language
+      document.addEventListener("DOMContentLoaded", function () {
+        changeLanguage();
+      });
+    </script>
+  </body>
+</html>
